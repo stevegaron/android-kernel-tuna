@@ -602,6 +602,17 @@ struct cpufreq_governor cpufreq_gov_conservative = {
 
 static int __init cpufreq_gov_dbs_init(void)
 {
+
+#ifdef CONFIG_HAS_EARLYSUSPEND
+	cpufreq_gov_lcd_status = 1;
+
+	cpufreq_gov_early_suspend.level = EARLY_SUSPEND_LEVEL_STOP_DRAWING + 1;
+
+	cpufreq_gov_early_suspend.suspend = cpufreq_gov_suspend;
+	cpufreq_gov_early_suspend.resume = cpufreq_gov_resume;
+	register_early_suspend(&cpufreq_gov_early_suspend);
+#endif
+
 	return cpufreq_register_governor(&cpufreq_gov_conservative);
 }
 
