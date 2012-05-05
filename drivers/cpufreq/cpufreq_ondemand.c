@@ -736,6 +736,16 @@ static int __init cpufreq_gov_dbs_init(void)
 			MIN_SAMPLING_RATE_RATIO * jiffies_to_usecs(10);
 	}
 
+#ifdef CONFIG_HAS_EARLYSUSPEND
+	cpufreq_gov_lcd_status = 1;
+
+	cpufreq_gov_early_suspend.level = EARLY_SUSPEND_LEVEL_BLANK_SCREEN + 25;
+
+	cpufreq_gov_early_suspend.suspend = cpufreq_gov_suspend;
+	cpufreq_gov_early_suspend.resume = cpufreq_gov_resume;
+	register_early_suspend(&cpufreq_gov_early_suspend);
+#endif
+
 	return cpufreq_register_governor(&cpufreq_gov_ondemand);
 }
 
