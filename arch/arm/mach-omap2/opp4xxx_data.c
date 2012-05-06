@@ -377,10 +377,10 @@ int __init omap4_opp_init(void)
 		goto out;
 
 	/* Enable Nitro and NitroSB IVA OPPs */
-	if (omap4_has_iva_430mhz())
-		omap4_opp_enable("iva", 430000000);
-	if (omap4_has_iva_500mhz())
-		omap4_opp_enable("iva", 500000000);
+	//if (omap4_has_iva_430mhz())
+	//	omap4_opp_enable("iva", 430000000);
+	//if (omap4_has_iva_500mhz())
+	//	omap4_opp_enable("iva", 500000000);
 
 	/* Enable Nitro and NitroSB MPU OPPs */
 	if (omap4_has_mpu_1_2ghz())
