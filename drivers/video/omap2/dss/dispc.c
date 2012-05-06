@@ -49,6 +49,8 @@
 #include "dispc.h"
 #ifdef CONFIG_OMAP2_DSS_GAMMA_CONTROL
 #include "gammatable.h"
+
+#define DEFAULT_GAMMA_LVL		7
 #endif
 
 /* DISPC */
@@ -2825,6 +2827,9 @@ int dispc_enable_gamma(enum omap_channel ch, u8 gamma)
 
 	if (gamma > NO_OF_GAMMA_TABLES || gamma < 0)
 		return -EINVAL;
+
+	if (gamma == 0) 
+		gamma = DEFAULT_GAMMA_LVL;
 
 	if (gamma) {
 		u8 *tablePtr = gamma_table[gamma - 1];
