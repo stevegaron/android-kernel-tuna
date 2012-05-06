@@ -50,7 +50,7 @@
 #ifdef CONFIG_OMAP2_DSS_GAMMA_CONTROL
 #include "gammatable.h"
 
-#define DEFAULT_GAMMA_LVL		7
+#define DEFAULT_GAMMA_LVL		6
 #endif
 
 /* DISPC */
